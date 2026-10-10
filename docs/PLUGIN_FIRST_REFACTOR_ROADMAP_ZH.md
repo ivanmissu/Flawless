@@ -73,6 +73,8 @@ plugins/
 
 ### 阶段 1：抽离只读能力
 
+- 进展：数据库域已提供只读参考 Adapter `backend/app/adapters/database/readonly.py`，以 `DatabaseTelemetryClient` 承接产品传输，覆盖 discover / collect_evidence / verify，并具备分区超时、部分失败、脱敏与 fail-closed 验证；合同测试见 `tests/test_database_readonly_adapter.py`。产品模块（MySQL、PostgreSQL 等）由数据库团队在该目录逐个接入。
+
 - 先迁移库存、日志、指标、拓扑和健康证据 Provider；
 - 对现有实现加兼容适配器，API 和生产部署不变；
 - 以数据库或网络插件作为第一个非 K8s 验收样板。
